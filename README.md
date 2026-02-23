@@ -39,5 +39,20 @@ To ensure reproducibility and avoid data leakage between the train and validatio
   * **Numerical Data:** `SimpleImputer` (strategy='median') + `StandardScaler`.
 * **Modeling:** Started with a baseline `RandomForestClassifier` (~79.7% accuracy) and later upgraded the core engine to an `XGBClassifier`, pushing the accuracy over the 80% mark.
 
+## Results & Conclusion
+
+This approach yielded an accuracy of **~80.3%**, securing **Rank 871 out of 1879 (Top 46%)** on the Kaggle public leaderboard for my first baseline submission.
+
+Considering that the absolute top scores in this competition hover around **82%**, achieving >80% with a single XGBoost model proves that the EDA-driven feature engineering successfully captured the core underlying patterns of the dataset (such as the `CryoSleep` and zero-expenditure logic). 
+
+While the remaining ~2% gap could be bridged using brute-force hyperparameter tuning or complex model ensembling, the primary goal of this iteration was achieved: building a clean, reproducible, and leak-free Machine Learning Pipeline using `scikit-learn`.
+
+### Future Work
+To push the model into the Top 20%, future iterations could explore:
+* **Advanced Imputation:** Inferring `HomePlanet` based on the `Deck` letter (e.g., certain decks only house passengers from Europa).
+* **Family Size Extraction:** Parsing the `PassengerId` (GGGG_PP) to create a `Group_Size` feature, as families tend to share the same fate.
+* **Hyperparameter Tuning:** Utilizing `GridSearchCV` or `Optuna` to fully optimize the XGBoost engine.
+* **Model Ensembling:** Combining XGBoost, LightGBM, and CatBoost with a voting classifier.
+
 
 
